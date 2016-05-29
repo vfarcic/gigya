@@ -8,22 +8,13 @@
 		<script type="text/javascript">
 			var urlParamsArr = {};
 			window.onload = function(){
-				// Parse the URL parameters into urlParamsArr
 				var urlParams = document.location.search.substr(1).split("&");
-
 				for (var i = 0; i < urlParams.length; i++) {
 					var ret = urlParams[i].toString().split("=");
 					urlParamsArr[ret[0]] = decodeURIComponent(ret[1]);
 				}
-
-				// Inject the user's nickname
 				document.getElementById('nickname').innerHTML = urlParamsArr["nickname"];
-
-				// Inject the login provider
 				document.getElementById('loginProvider').innerHTML = urlParamsArr["loginProvider"];
-
-				// YOUR MISSION:
-				//    Enhance the user experience by providing more detail from input parameters
 			}
 		</script>
 	</head>
