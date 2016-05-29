@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+  front:
+    build: front/.
+    image: gigya-front
+    ports:
+      - 8082:80
+
+  back:
+    build: back/.
+    image: gigya-back
+    ports:
+      - 8081:80
+
+  proxy:
+    build: proxy/.
+    image: gigya-proxy
+    ports:
+      - 8080:80
+
+  db:
+    image: mongo

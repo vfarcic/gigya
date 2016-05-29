@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Untitled Document</title>
+		<script type="text/javascript" src="gigya.js"></script>
+		<script type="text/javascript" src="http://cdn.gigya.com/js/socialize.js?apiKey=2_Y82PzwJ_chSFImHXaIDJClnLyJzmk-VFOavSsaNTzl6m901s_NNxRAS0xJ3bd3_N"></script>
+		<script type="text/javascript">
+			var urlParamsArr = {};
+			window.onload = function(){
+				// Parse the URL parameters into urlParamsArr
+				var urlParams = document.location.search.substr(1).split("&");
+
+				for (var i = 0; i < urlParams.length; i++) {
+					var ret = urlParams[i].toString().split("=");
+					urlParamsArr[ret[0]] = decodeURIComponent(ret[1]);
+				}
+
+				// Inject the user's nickname
+				document.getElementById('nickname').innerHTML = urlParamsArr["nickname"];
+
+				// Inject the login provider
+				document.getElementById('loginProvider').innerHTML = urlParamsArr["loginProvider"];
+
+				// YOUR MISSION:
+				//    Enhance the user experience by providing more detail from input parameters
+			}
+		</script>
+	</head>
+	<body>
+		<div style="float:left; margin:0px 10px; padding:10px; border:2px solid blue;">
+			<p>
+				Welcome, <span id="nickname"></span>!
+				<p>You authenticated with <span id="loginProvider"></span></p>
+			</p>
+		</div>
+		<div style="float:left; margin:0px 10px; padding:10px;">
+			<div id="socDiv"></div>
+			<input type="button" onclick="logoutHandler(); return false;" value="Logout and return to the login page">
+		</div>
+		<script>onLoadLogout();</script>
+	</body>
+</html>

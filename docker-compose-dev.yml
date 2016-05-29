@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+
+  front:
+    extends:
+      file: docker-compose.yml
+      service: front
+    volumes:
+      - ./front/src:/usr/share/nginx/html/demo:ro
+
+  back-compile:
+    image: golang:1.6
+    volumes:
+      - ./back:/usr/src/myapp
+      - /tmp/go:/go
+    command: bash -c "cd /usr/src/myapp && go get -d -v -t && go test --cover -v ./... && go build -v -o gigya"
+
+  back:
+    extends:
+      file: docker-compose.yml
+      service: back
+
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
+
+  proxy:
+    extends:
+      file: docker-compose.yml
+      service: proxy
+    volumes:
+      - ./proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
